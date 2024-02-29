@@ -1,0 +1,528 @@
+[
+    {
+        "id": "264cc5c5b8338394",
+        "type": "tab",
+        "label": "Examples of component usage",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "93e6cf2049ba8ebd",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "a36c8664107b1913",
+        "type": "debug",
+        "z": "264cc5c5b8338394",
+        "name": "Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 590,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "1786c3e5a22144a7",
+        "type": "inject",
+        "z": "264cc5c5b8338394",
+        "name": "Start",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 250,
+        "y": 280,
+        "wires": [
+            [
+                "213703e50a691391"
+            ]
+        ]
+    },
+    {
+        "id": "df4e41427e9921e8",
+        "type": "debug",
+        "z": "264cc5c5b8338394",
+        "name": "Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 590,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "bb43ac25c5c5f51a",
+        "type": "inject",
+        "z": "264cc5c5b8338394",
+        "name": "Start",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "str",
+        "x": 250,
+        "y": 200,
+        "wires": [
+            [
+                "d1c766aa440e6049"
+            ]
+        ]
+    },
+    {
+        "id": "2d178a0362158736",
+        "type": "inject",
+        "z": "264cc5c5b8338394",
+        "name": "Start",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"documents\":[{\"date\":\"2023-11-21\",\"name\":\"Invoice123\",\"state\":\"Processed\",\"priority\":\"High\"},{\"date\":\"2023-10-15\",\"name\":\"Contract789\",\"state\":\"Approved\",\"priority\":\"High\"},{\"date\":\"2023-09-05\",\"name\":\"Report456\",\"state\":\"Processed\",\"priority\":\"Low\"}]}",
+        "payloadType": "json",
+        "x": 230,
+        "y": 540,
+        "wires": [
+            [
+                "d74b5d414d4d9055"
+            ]
+        ]
+    },
+    {
+        "id": "52c08b56d2932a2e",
+        "type": "debug",
+        "z": "264cc5c5b8338394",
+        "name": "Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 770,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "d74b5d414d4d9055",
+        "type": "function",
+        "z": "264cc5c5b8338394",
+        "name": "JSONSequence",
+        "func": "// Obtenemos el objeto JSON\nvar input = msg.payload;\n\n// Verificamos si el objeto tiene la estructura esperada\nif (input && input.documents && Array.isArray(input.documents)) {\n    // Accedemos a la matriz de documentos\n    var documents = input.documents;\n\n    // Iteramos sobre cada documento\n    documents.forEach(function (document, index) {\n        // Creamos un nuevo mensaje para cada documento\n        var newMsg = {};\n        newMsg.payload = document;\n\n        // Enviamos cada documento a un nodo de salida (por ejemplo, un nodo \"debug\")\n        node.send(newMsg);\n    });\n} else {\n    // Si la estructura del objeto no es la esperada, enviamos un mensaje de error\n    node.error(\"El objeto JSON no tiene la estructura esperada\", msg);\n}\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 540,
+        "wires": [
+            [
+                "filterBy"
+            ]
+        ]
+    },
+    {
+        "id": "2c0b4ff258abdc91",
+        "type": "inject",
+        "z": "264cc5c5b8338394",
+        "name": "Start",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"documents\":[{\"date\":\"2023-11-21\",\"name\":\"Invoice123\",\"state\":\"Processed\",\"priority\":\"High\"},{\"date\":\"2023-10-15\",\"name\":\"Contract789\",\"state\":\"Approved\",\"priority\":\"High\"},{\"date\":\"2023-09-05\",\"name\":\"Report456\",\"state\":\"Processed\",\"priority\":\"Low\"}]}",
+        "payloadType": "json",
+        "x": 230,
+        "y": 480,
+        "wires": [
+            [
+                "8e8caeee65061505"
+            ]
+        ]
+    },
+    {
+        "id": "b4e437facd83875b",
+        "type": "debug",
+        "z": "264cc5c5b8338394",
+        "name": "Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 770,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "8e8caeee65061505",
+        "type": "function",
+        "z": "264cc5c5b8338394",
+        "name": "JSONSequence",
+        "func": "// Obtenemos el objeto JSON\nvar input = msg.payload;\n\n// Verificamos si el objeto tiene la estructura esperada\nif (input && input.documents && Array.isArray(input.documents)) {\n    // Accedemos a la matriz de documentos\n    var documents = input.documents;\n\n    // Iteramos sobre cada documento\n    documents.forEach(function (document, index) {\n        // Creamos un nuevo mensaje para cada documento\n        var newMsg = {};\n        newMsg.payload = document;\n\n        // Enviamos cada documento a un nodo de salida (por ejemplo, un nodo \"debug\")\n        node.send(newMsg);\n    });\n} else {\n    // Si la estructura del objeto no es la esperada, enviamos un mensaje de error\n    node.error(\"El objeto JSON no tiene la estructura esperada\", msg);\n}\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 480,
+        "wires": [
+            [
+                "9970c6ef46fa2aad"
+            ]
+        ]
+    },
+    {
+        "id": "filterBy",
+        "type": "filter-by",
+        "z": "264cc5c5b8338394",
+        "name": "",
+        "valueType": "State",
+        "attribute": "state",
+        "value": "Processed",
+        "x": 600,
+        "y": 540,
+        "wires": [
+            [
+                "52c08b56d2932a2e"
+            ]
+        ]
+    },
+    {
+        "id": "9970c6ef46fa2aad",
+        "type": "sf:filter-by-date",
+        "z": "264cc5c5b8338394",
+        "name": "",
+        "startDate": "2023-11-19",
+        "endDate": "2023-11-24",
+        "attribute": "date",
+        "x": 610,
+        "y": 480,
+        "wires": [
+            [
+                "b4e437facd83875b"
+            ]
+        ]
+    },
+    {
+        "id": "39a09838d9ae028a",
+        "type": "inject",
+        "z": "264cc5c5b8338394",
+        "name": "Start",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{    \"documents\":[       {          \"date\":\"2023-11-21\",          \"documentName\":\"Invoice123\",          \"state\":\"Processed\"       },       {          \"date\":\"2023-10-15\",          \"documentName\":\"Contract789\",          \"state\":\"Approved\"       },       {          \"date\":\"2023-09-05\",          \"documentName\":\"Report456\",          \"state\":\"Processed\"       }    ],    \"otherThings\":[       {          \"name\":\"I don't know\",          \"state\":\"Very good\"       }    ] }",
+        "payloadType": "json",
+        "x": 310,
+        "y": 620,
+        "wires": [
+            [
+                "970d7117fc1a9a4e"
+            ]
+        ]
+    },
+    {
+        "id": "61d47bbbdbdd9f28",
+        "type": "debug",
+        "z": "264cc5c5b8338394",
+        "name": "Result",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 650,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "970d7117fc1a9a4e",
+        "type": "sf:exists-pipe",
+        "z": "264cc5c5b8338394",
+        "name": "",
+        "count": 2,
+        "x": 490,
+        "y": 620,
+        "wires": [
+            [
+                "61d47bbbdbdd9f28"
+            ]
+        ]
+    },
+    {
+        "id": "95784f6d4016fb4b",
+        "type": "exists-section-in-doc",
+        "z": "264cc5c5b8338394",
+        "name": "",
+        "section": "Álvaro",
+        "x": 520,
+        "y": 680,
+        "wires": [
+            [
+                "73b0d73b8b2799bf"
+            ]
+        ]
+    },
+    {
+        "id": "01830a18ba2e2491",
+        "type": "http in",
+        "z": "264cc5c5b8338394",
+        "name": "",
+        "url": "/existsSection",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 290,
+        "y": 680,
+        "wires": [
+            [
+                "95784f6d4016fb4b"
+            ]
+        ]
+    },
+    {
+        "id": "73b0d73b8b2799bf",
+        "type": "http response",
+        "z": "264cc5c5b8338394",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 710,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "9b545e850df2f908",
+        "type": "http in",
+        "z": "264cc5c5b8338394",
+        "name": "",
+        "url": "/urlToDoc",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 280,
+        "y": 740,
+        "wires": [
+            [
+                "8e63d9da573b96f1"
+            ]
+        ]
+    },
+    {
+        "id": "13c3047b49d8595b",
+        "type": "http response",
+        "z": "264cc5c5b8338394",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 710,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "8e63d9da573b96f1",
+        "type": "url-to-doc",
+        "z": "264cc5c5b8338394",
+        "name": "",
+        "x": 500,
+        "y": 740,
+        "wires": [
+            [
+                "13c3047b49d8595b"
+            ]
+        ]
+    },
+    {
+        "id": "213703e50a691391",
+        "type": "sf:github-collector",
+        "z": "264cc5c5b8338394",
+        "name": "",
+        "username": "gii-is-psg2",
+        "repoName": "psg2-2223-g1-12",
+        "path": "docs",
+        "token": "",
+        "x": 420,
+        "y": 280,
+        "wires": [
+            [
+                "df4e41427e9921e8"
+            ]
+        ]
+    },
+    {
+        "id": "d1c766aa440e6049",
+        "type": "sf:trello-collector",
+        "z": "264cc5c5b8338394",
+        "name": "",
+        "boardId": "",
+        "key": "",
+        "token": "",
+        "x": 420,
+        "y": 200,
+        "wires": [
+            [
+                "a36c8664107b1913"
+            ]
+        ]
+    },
+    {
+        "id": "41bd0483274cd3ec",
+        "type": "exists-url",
+        "z": "264cc5c5b8338394",
+        "name": "",
+        "x": 440,
+        "y": 360,
+        "wires": [
+            [
+                "5fa2ce756fbb4e30"
+            ]
+        ]
+    },
+    {
+        "id": "5fa2ce756fbb4e30",
+        "type": "http response",
+        "z": "264cc5c5b8338394",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 630,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "074a543b69090a8e",
+        "type": "http in",
+        "z": "264cc5c5b8338394",
+        "name": "",
+        "url": "/existsUrl",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 250,
+        "y": 360,
+        "wires": [
+            [
+                "41bd0483274cd3ec"
+            ]
+        ]
+    },
+    {
+        "id": "03db9e26af802098",
+        "type": "http in",
+        "z": "264cc5c5b8338394",
+        "name": "",
+        "url": "/projectToUrl",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 250,
+        "y": 420,
+        "wires": [
+            [
+                "3b7b3f09882b9b7b"
+            ]
+        ]
+    },
+    {
+        "id": "717c3c52253eb20e",
+        "type": "http response",
+        "z": "264cc5c5b8338394",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 610,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "3b7b3f09882b9b7b",
+        "type": "project-to-url",
+        "z": "264cc5c5b8338394",
+        "name": "",
+        "x": 450,
+        "y": 420,
+        "wires": [
+            [
+                "717c3c52253eb20e"
+            ]
+        ]
+    },
+    {
+        "id": "4dc0c58cc7d414f6",
+        "type": "debug",
+        "z": "93e6cf2049ba8ebd",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 320,
+        "y": 120,
+        "wires": []
+    }
+]
