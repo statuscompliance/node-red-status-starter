@@ -23,7 +23,7 @@ Node-RED is an open-source flow-based programming tool designed for visual progr
 
 2. Clone the GitHub repository with the following command:
    ```bash
-   git clone https://github.com/statuscompliance/node-red-status
+   git clone https://github.com/statuscompliance/node-red-status-starter
    ```
 3. Find the `node-red-status` folder or execute:
    ```bash
@@ -41,7 +41,7 @@ Node-RED is an open-source flow-based programming tool designed for visual progr
 2. Clone the GitHub repository by running the following command:
 
    ```bash
-   git clone https://github.com/statuscompliance/node-red-status
+   git clone https://github.com/statuscompliance/node-red-status-starter
    ```
 
 3. Change to the newly cloned directory:
