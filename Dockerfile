@@ -1,6 +1,6 @@
 FROM nodered/node-red
 
-RUN npm install --save @alvarobc2412/status
+RUN npm install --save @alvarobc2412/status@latest
 
 COPY settings.js /data/settings.js
 
